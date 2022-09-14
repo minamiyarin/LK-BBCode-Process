@@ -18,32 +18,34 @@ const processContents = inputContent => {
     if ((/\[img\](.*?)\[\/img\]/).test(line)) {
       i++
       let imgUrl = ''
-      if ((/(.*?)\[img\]/).test(line)) {
-        if ((/\[\/img\](.*?)/).test(line)) {
-          imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\].*?/g,'$1')
-          imgUrlList.push(imgUrl)
-          let before = rexProcess(line.replace(/(.*?)\[img\].*?/g,'$1'))
-          let after = rexProcess(line.replace(/.*?\[\/img\](.*?)/g,'$1'))
-          htmlLine = `${before}\r<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>\r${after}`
-        } else {
-          imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\]/g,'$1')
-          imgUrlList.push(imgUrl)
-          let before = rexProcess(line.replace(/(.*?)\[img\]/g,'$1'))
-          htmlLine = `${before}\r<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>`
-        }
-        // imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\]/g,'$1')
-      } else {
-        if ((/\[\/img\](.*?)/).test(line)) {
-          imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\].*?/g,'$1')
-          imgUrlList.push(imgUrl)
-          let after = rexProcess(line.replace(/.*?\[\/img\](.*?)/g,'$1'))
-          htmlLine = `<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>\r${after}`
-        } else {
-          imgUrl = line.replace(/\[img\](.*?)\[\/img\]/g,'$1')
-          imgUrlList.push(imgUrl)
-          htmlLine = `<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>`
-        }
-      }
+      // if ((/(.*?)\[img\]/).test(line)) {
+      //   if ((/\[\/img\](.*?)/).test(line)) {
+      //     imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\].*?/g,'$1')
+      //     imgUrlList.push(imgUrl)
+      //     let before = rexProcess(line.replace(/(.*?)\[img\].*?/g,'$1'))
+      //     let after = rexProcess(line.replace(/.*?\[\/img\](.*?)/g,'$1'))
+      //     htmlLine = `${before}\r<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>\r${after}`
+      //   } else {
+      //     imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\]/g,'$1')
+      //     imgUrlList.push(imgUrl)
+      //     let before = rexProcess(line.replace(/(.*?)\[img\]/g,'$1'))
+      //     htmlLine = `${before}\r<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>`
+      //   }
+      // } else {
+      //   if ((/\[\/img\](.*?)/).test(line)) {
+      //     imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\].*?/g,'$1')
+      //     imgUrlList.push(imgUrl)
+      //     let after = rexProcess(line.replace(/.*?\[\/img\](.*?)/g,'$1'))
+      //     htmlLine = `<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>\r${after}`
+      //   } else {
+      //     imgUrl = line.replace(/\[img\](.*?)\[\/img\]/g,'$1')
+      //     imgUrlList.push(imgUrl)
+      //     htmlLine = `<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>`
+      //   }
+      // }
+      imgUrl = line.replace(/.*?\[img\](.*?)\[\/img\]/g,'$1')
+      imgUrlList.push(imgUrl)
+      htmlLine = `<p>（插图${(Array(3).join(0) + i).slice(-3)}）</p>`
     } else {
       if (!!line) {
         htmlLine = rexProcess(line)

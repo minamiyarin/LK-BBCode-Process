@@ -13,7 +13,9 @@ const formatText = lineList => {
   contents = contents.replace(/\r/g, '＜PROGRAMENTERSIGN＞')
   // contents = contents.replace(/\\r/g, '＜PROGRAMENTERSIGN＞')
   contents = contents.replace(/\[img\]＜PROGRAMENTERSIGN＞/g, '[img]')
-  contents = contents.replace(/\[\/img\]\[img\]/g, '[/img]＜PROGRAMENTERSIGN＞[img]')
+  contents = contents.replace(/\[\/img\]/g, '[/img]＜PROGRAMENTERSIGN＞')
+  contents = contents.replace(/\[img\]/g, '＜PROGRAMENTERSIGN＞[img]')
+  contents = contents.replace(/\[\/img\](＜PROGRAMENTERSIGN＞)+\[img\]/g, '[/img]＜PROGRAMENTERSIGN＞[img]')
 
   // console.log(contents)
   const formatLineList = contents.split('＜PROGRAMENTERSIGN＞')
